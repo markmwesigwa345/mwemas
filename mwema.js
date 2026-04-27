@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+ HEAD
 
   /* ── LOADER ── */
   window.addEventListener('load', () => {
