@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Mwema Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="mwema.css"/>
+  <link rel="icon" href="mwemaphoto.png">
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-logo">MWEMA SOLUTIONS</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<button id="backtop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="mwema.html" class="nav-logo">
+      <div class="nav-logo-icon">MW</div>
+      <div class="nav-logo-text">
+        <strong>MWEMA</strong>
+        <span>Solutions</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="mwema.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html#testimonials">Clients</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn-primary"><i class="fas fa-phone-alt"></i> Get in Touch</a>
+      <a href="mwema.html" class="nav-logo-pin" aria-label="Mwema Solutions home">MW</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="mwema.html" onclick="closeMenu()">Home</a>
+  <a href="services.html" onclick="closeMenu()">Services</a>
+  <a href="about.html" onclick="closeMenu()">About Us</a>
+  <a href="products.html" onclick="closeMenu()">Products</a>
+  <a href="about.html#testimonials" onclick="closeMenu()">Our Clients</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+<section id="servicesHero" class="service-hero">
+  <video class="service-video" autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80">
+    <source src="https://cdn.coverr.co/videos/coverr-woman-holding-a-box-5233/1080p.mp4" type="video/mp4" />
+  </video>
+  <div class="service-hero-overlay"></div>
+  <div class="container service-hero-content reveal">
+    <span class="section-label">Delivery in Action</span>
+    <h1 class="section-title">A Mwema Solutions delivery experience, every time.</h1>
+    <p class="section-desc">See how our branded delivery arrives safely, on schedule, and ready for students and teams across Uganda.</p>
+    <a href="contact.html" class="btn-primary">Get a Delivery Quote</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">Technology Solutions for Students and Businesses</h2>
+      <p class="section-desc">Explore the solutions Mwema offers across sales, delivery, repairs, support, and bulk packages.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our Core <span class="gold">Services</span></h2>
+      <p class="section-desc">We go beyond selling laptops — we provide complete technology solutions built around your needs and budget.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-laptop"></i></div>
+        <div class="sc-title">Computer Sales</div>
+        <div class="sc-desc">Brand new and certified refurbished laptops and desktops. HP, Dell, Lenovo, Toshiba, Apple — carefully sourced and thoroughly checked.</div>
+        <span class="sc-badge">Most Popular</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-building"></i></div>
+        <div class="sc-title">Business Packages</div>
+        <div class="sc-desc">Bulk supply for businesses and institutions. Custom-configured machines with software, warranties, and after-sales support included.</div>
+        <span class="sc-badge">Bulk Discounts</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="sc-title">Student Solutions</div>
+        <div class="sc-desc">Specially curated devices that match student budgets and academic requirements. Flexible payment plans available for schools.</div>
+        <span class="sc-badge">Flexible Payment</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-truck"></i></div>
+        <div class="sc-title">Nationwide Delivery</div>
+        <div class="sc-desc">Safe and insured delivery of your device anywhere in Uganda. We package every unit with care to ensure it arrives in perfect condition.</div>
+        <span class="sc-badge">All Districts</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-tools"></i></div>
+        <div class="sc-title">Repairs &amp; Maintenance</div>
+        <div class="sc-desc">Comprehensive computer repair services — hardware fixes, software troubleshooting, virus removal, and preventive maintenance.</div>
+        <span class="sc-badge">Quick Turnaround</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-headset"></i></div>
+        <div class="sc-title">After-Sales Support</div>
+        <div class="sc-desc">We don't disappear after the sale. Get ongoing technical support, software help, and guidance from our knowledgeable team.</div>
+        <span class="sc-badge">Always Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-inner">
+      <div class="reveal">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title" style="margin-bottom:36px;">The <span class="gold">Mwema</span><br>Advantage</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-num">01</div>
+            <div class="why-text">
+              <strong>Carefully Sourced Devices</strong>
+              <p>We partner with certified suppliers to bring you genuine products with proper documentation and warranty coverage.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">02</div>
+            <div class="why-text">
+              <strong>Unbeatable Value</strong>
+              <p>Competitive prices tailored to the Ugandan market — whether you're a student, a startup, or an established business.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">03</div>
+            <div class="why-text">
+              <strong>Expert Honest Guidance</strong>
+              <p>No hard selling. We listen to your needs and recommend the device that truly fits — not the most expensive one.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">04</div>
+            <div class="why-text">
+              <strong>Post-Purchase Care</strong>
+              <p>Your relationship with us doesn't end at checkout. We're here for setup, training, troubleshooting, and more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <div class="why-big-stat">
+          <div class="why-big-num">500+</div>
+          <div class="why-big-label">Happy Clients Across Uganda</div>
+        </div>
+        <div class="why-mini-stats">
+          <div class="mini-stat">
+            <strong>100%</strong>
+            <span>Verified Devices</span>
+          </div>
+          <div class="mini-stat">
+            <strong>24hr</strong>
+            <span>Response Time</span>
+          </div>
+          <div class="mini-stat">
+            <strong>5★</strong>
+            <span>Average Rating</span>
+          </div>
+          <div class="mini-stat">
+            <strong>UG</strong>
+            <span>Nationwide Reach</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="cta-banner">
+  <div class="container">
+    <h2>Ready for a smarter purchase?</h2>
+    <p>Contact our team for a personalized recommendation and fast delivery anywhere in Uganda.</p>
+    <div class="cta-btns">
+      <a href="tel:+256701913028" class="btn-dark"><i class="fas fa-phone-alt"></i> Call Now</a>
+      <a href="contact.html" class="btn-white-outline"><i class="fas fa-envelope"></i> Send Inquiry</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0">
+          <div class="nav-logo-icon">MW</div>
+          <div class="nav-logo-text">
+            <strong>MWEMA</strong>
+            <span>Solutions</span>
+          </div>
+        </div>
+        <p>Connecting students and businesses across Uganda to affordable, reliable technology since 2019.</p>
+        <div class="footer-social">
+          <a href="tel:+256701913028" class="social-btn"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/256701913028" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:mwemasolutions.it@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="mwema.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="products.html">HP Laptops</a></li>
+          <li><a href="products.html">Dell Laptops</a></li>
+          <li><a href="products.html">Lenovo Laptops</a></li>
+          <li><a href="products.html">Desktop PCs</a></li>
+          <li><a href="products.html">Refurbished</a></li>
+          <li><a href="products.html">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+256701913028">+256 701 913 028</a></li>
+          <li><a href="tel:+256784841119">+256 784 841 119</a></li>
+          <li><a href="mailto:mwemasolutions.it@gmail.com">mwemasolutions.it@gmail.com</a></li>
+          <li><a href="contact.html">Makerere Kikoni, Kampala</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Mwema Solutions</span>. All Rights Reserved.</p>
+      <p>Designed with <span>❤</span> for Uganda's digital future.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="mwema.js" defer></script>
+</body>
+</html>
