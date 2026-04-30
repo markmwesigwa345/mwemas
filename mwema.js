@@ -114,11 +114,11 @@ if (dotsContainer) {
   }
   if (heroSlides.length) {
     rotateHero();
-    setInterval(rotateHero, 7000);
+    setInterval(rotateHero, 3000);
   }
   if (heroWords.length) {
     rotateHeroWords();
-    setInterval(rotateHeroWords, 7000);
+    setInterval(rotateHeroWords, 2500);
   }
 
   /* ── ADVANTAGE CARD TABS ── */
