@@ -255,6 +255,297 @@ if (dotsContainer) {
     setTimeout(() => document.getElementById('contactMsg').classList.remove('success'), 6000);
   }
 
+  /* ── AI CHAT WIDGET ── */
+  (function initAIChat() {
+    // Inject widget HTML into every page
+    const widgetHTML = `
+      <button id="ai-chat-btn" aria-label="Chat with Mwema AI">
+        <i class="fas fa-robot"></i>
+        <span class="ai-pulse"></span>
+      </button>
+      <div id="ai-chat-box" role="dialog" aria-label="Mwema AI Assistant">
+        <div class="ai-chat-header">
+          <div class="ai-chat-avatar"><i class="fas fa-robot"></i></div>
+          <div class="ai-chat-header-info">
+            <strong>Mwema AI Assistant</strong>
+            <span>Online — Ask me anything</span>
+          </div>
+          <button class="ai-chat-close" id="ai-chat-close" aria-label="Close chat">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages"></div>
+        <div class="ai-quick-replies" id="ai-quick-replies"></div>
+        <div class="ai-chat-input-row">
+          <input type="text" id="ai-chat-input" placeholder="Ask about products, prices, delivery..." autocomplete="off"/>
+          <button id="ai-chat-send" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', widgetHTML);
+
+    const btn       = document.getElementById('ai-chat-btn');
+    const box       = document.getElementById('ai-chat-box');
+    const closeBtn  = document.getElementById('ai-chat-close');
+    const messages  = document.getElementById('ai-chat-messages');
+    const input     = document.getElementById('ai-chat-input');
+    const sendBtn   = document.getElementById('ai-chat-send');
+    const quickWrap = document.getElementById('ai-quick-replies');
+
+    // ── Business knowledge base ──
+    const KB = [
+      {
+        keys: ['hello','hi','hey','good morning','good afternoon','good evening','start','help'],
+        reply: `Hi there! 👋 Welcome to <strong>Mwema Solutions</strong>. I'm your AI assistant. I can help you with:<br><br>
+          • 💻 Laptop & desktop prices<br>
+          • 🚚 Delivery information<br>
+          • 🔧 Repair services<br>
+          • 📍 Location & hours<br>
+          • 📦 Bulk & business orders<br><br>
+          What would you like to know?`,
+        quick: ['Laptop prices','Delivery info','Repairs','Location & hours','Contact us']
+      },
+      {
+        keys: ['laptop','laptops','notebook','hp','dell','lenovo','toshiba','elitebook','thinkpad','ideapad','latitude'],
+        reply: `We stock a great range of laptops! Here's a quick overview:<br><br>
+          <strong>Refurbished (Certified):</strong><br>
+          • HP EliteBook 840 G6 — Core i5, 8GB, 256GB SSD — <strong>UGX 1.4M</strong><br>
+          • Dell Latitude 5490 — Core i7, 16GB, 512GB SSD — <strong>UGX 1.9M</strong><br>
+          • Lenovo ThinkPad T470 — Core i5, 8GB, 500GB — <strong>UGX 1.2M</strong><br>
+          • Toshiba Satellite Pro — Core i5, 4GB, 320GB — <strong>UGX 700K</strong><br><br>
+          <strong>Brand New:</strong><br>
+          • HP 250 G8 — Core i3, 4GB, 1TB — <strong>UGX 1.8M</strong><br>
+          • Lenovo IdeaPad 3 — Ryzen 5, 8GB, 512GB SSD — <strong>UGX 2.1M</strong><br><br>
+          All refurbished units are thoroughly inspected and come with a warranty. Want to enquire about a specific model?`,
+        quick: ['Desktop prices','Delivery info','Make an enquiry','Contact us']
+      },
+      {
+        keys: ['desktop','desktops','pc','optiplex','prodesk','tower','computer'],
+        reply: `We also carry reliable desktop PCs:<br><br>
+          • Dell OptiPlex 7050 — Core i5, 8GB, 500GB (Refurb) — <strong>UGX 850K</strong><br>
+          • HP ProDesk 400 G6 — Core i5, 8GB, 1TB (New) — <strong>UGX 1.6M</strong><br><br>
+          Desktops are great for offices, schools, and home use. We can also configure them with software before delivery. Interested?`,
+        quick: ['Laptop prices','Bulk order','Delivery info','Contact us']
+      },
+      {
+        keys: ['price','prices','cost','how much','ugx','budget','cheap','affordable','expensive'],
+        reply: `Our prices are designed to fit every budget:<br><br>
+          <strong>Refurbished laptops:</strong> UGX 700K – 1.9M<br>
+          <strong>Brand new laptops:</strong> UGX 1.8M – 2.1M<br>
+          <strong>Desktop PCs:</strong> UGX 850K – 1.6M<br><br>
+          💡 We also offer <strong>flexible payment plans</strong> for students and schools. For the most accurate quote, contact us directly — prices may vary based on availability.`,
+        quick: ['Laptop prices','Desktop prices','Bulk order','Contact us']
+      },
+      {
+        keys: ['delivery','deliver','shipping','ship','send','nationwide','kampala','mbarara','gulu','ibanda','district'],
+        reply: `We deliver <strong>anywhere in Uganda</strong>! 🚚<br><br>
+          • <strong>Kampala:</strong> Same-day or next-day delivery<br>
+          • <strong>Nationwide:</strong> 1–3 business days depending on location<br>
+          • All devices are carefully packaged to arrive in perfect condition<br>
+          • Delivery is insured — your device is protected in transit<br><br>
+          We've delivered to Kampala, Mbarara, Ibanda, Gulu, and many more districts. Contact us for a delivery quote to your area.`,
+        quick: ['Laptop prices','Contact us','Location & hours']
+      },
+      {
+        keys: ['repair','fix','broken','screen','keyboard','virus','slow','maintenance','service','diagnos'],
+        reply: `We offer comprehensive <strong>computer repair services</strong>: 🔧<br><br>
+          • Screen replacement<br>
+          • Keyboard & hardware fixes<br>
+          • Virus removal & software troubleshooting<br>
+          • RAM & storage upgrades<br>
+          • Preventive maintenance & cleaning<br>
+          • OS reinstallation & software setup<br><br>
+          <strong>Quick turnaround</strong> — most repairs done within 24–48 hours. Bring your device to us at Makerere Kikoni, Kampala, or call for a pickup arrangement.`,
+        quick: ['Location & hours','Contact us','Laptop prices']
+      },
+      {
+        keys: ['bulk','wholesale','school','institution','ngo','company','business','corporate','office','multiple','quantity'],
+        reply: `We love working with businesses and institutions! 🏢<br><br>
+          Our <strong>bulk & business packages</strong> include:<br>
+          • Custom-configured machines (software pre-installed)<br>
+          • Volume discounts on 5+ units<br>
+          • Warranty & after-sales support included<br>
+          • Flexible payment terms for schools & NGOs<br>
+          • Nationwide delivery for large orders<br><br>
+          We've supplied laptops to companies, schools, and NGOs across Uganda. Send us your specifications and budget for a tailored proposal.`,
+        quick: ['Contact us','Delivery info','Laptop prices']
+      },
+      {
+        keys: ['location','address','where','find','visit','physical','shop','store','makerere','kikoni'],
+        reply: `You can find us at:<br><br>
+          📍 <strong>Makerere Kikoni, Kampala</strong><br>
+          Central Uganda<br><br>
+          We're easy to reach — just off the main Makerere road. You can also call ahead and we'll guide you directly to our shop.`,
+        quick: ['Working hours','Contact us','Delivery info']
+      },
+      {
+        keys: ['hours','open','time','when','working','schedule','monday','saturday','sunday','weekend'],
+        reply: `Our working hours are:<br><br>
+          🕗 <strong>Monday – Saturday: 8:00 AM – 7:00 PM</strong><br><br>
+          We're closed on Sundays, but you can still reach us via WhatsApp for urgent enquiries and we'll respond as soon as possible.`,
+        quick: ['Location','Contact us','Delivery info']
+      },
+      {
+        keys: ['contact','call','phone','whatsapp','email','reach','talk','message','number'],
+        reply: `Here's how to reach us directly:<br><br>
+          📞 <strong>+256 701 913 028</strong><br>
+          📞 <strong>+256 784 841 119</strong><br>
+          💬 WhatsApp: <strong>+256 701 913 028</strong><br>
+          📧 <strong>mwemasolutions.it@gmail.com</strong><br><br>
+          Or visit us at <strong>Makerere Kikoni, Kampala</strong>. We respond quickly — usually within a few hours!`,
+        quick: ['Location & hours','Laptop prices','Delivery info']
+      },
+      {
+        keys: ['warranty','guarantee','return','refund','policy'],
+        reply: `All our devices come with a <strong>warranty</strong>:<br><br>
+          • Refurbished laptops: <strong>3–6 month warranty</strong> depending on model<br>
+          • Brand new devices: <strong>manufacturer warranty</strong> applies<br>
+          • After-sales support is always available<br><br>
+          If you experience any issues after purchase, contact us and we'll sort it out promptly. Your satisfaction is our priority.`,
+        quick: ['Repairs','Contact us','Laptop prices']
+      },
+      {
+        keys: ['student','university','campus','makerere','school','academic','study','learning'],
+        reply: `We have <strong>student-friendly packages</strong> designed specifically for campus life! 🎓<br><br>
+          • Affordable refurbished laptops from <strong>UGX 700K</strong><br>
+          • Flexible payment plans available<br>
+          • Lightweight, battery-efficient models for long study sessions<br>
+          • Free basic software setup (MS Office, antivirus)<br><br>
+          Many students from Makerere, Kyambogo, and other universities trust Mwema Solutions. Come in or WhatsApp us for a student deal!`,
+        quick: ['Laptop prices','Contact us','Delivery info']
+      },
+      {
+        keys: ['accessory','accessories','mouse','keyboard','bag','charger','cable','headset','monitor','printer'],
+        reply: `Yes, we also stock <strong>computer accessories</strong>! 🖱️<br><br>
+          • Laptop bags & backpacks<br>
+          • Mice (wired & wireless)<br>
+          • Keyboards<br>
+          • Chargers & power adapters<br>
+          • HDMI & USB cables<br>
+          • Headsets & earphones<br><br>
+          Contact us or visit the shop for current stock and pricing.`,
+        quick: ['Contact us','Laptop prices','Location & hours']
+      },
+      {
+        keys: ['about','who','mwema','story','founder','mark','mission','history','since','2019'],
+        reply: `<strong>Mwema Solutions</strong> was founded in 2019 by <strong>Mwesigwa Mark</strong> with a simple but powerful mission: make quality computers accessible to every student and small business in Uganda. 🇺🇬<br><br>
+          Based in Makerere Kikoni, Kampala, we've grown to serve clients across the entire country — from Kampala to Mbarara, Ibanda to Gulu.<br><br>
+          We believe in honest guidance, transparent pricing, and genuine after-sales care. Over <strong>500+ happy clients</strong> and counting!`,
+        quick: ['Laptop prices','Contact us','Delivery info']
+      },
+      {
+        keys: ['refurbished','used','second hand','certified','grade'],
+        reply: `Our <strong>refurbished devices</strong> are not just "used" — they're <strong>certified and inspected</strong>: ✅<br><br>
+          • Every unit goes through a full hardware diagnostic<br>
+          • Faulty parts are replaced before sale<br>
+          • Cleaned, tested, and reset to factory settings<br>
+          • Come with a 3–6 month warranty<br>
+          • Sourced from reputable suppliers with proper documentation<br><br>
+          Refurbished is a smart choice — you get premium specs at a fraction of the new price.`,
+        quick: ['Laptop prices','Warranty info','Contact us']
+      }
+    ];
+
+    const fallback = `I'm not sure about that specific question, but I'm here to help! 😊<br><br>
+      You can ask me about:<br>
+      • Laptop & desktop prices<br>
+      • Delivery across Uganda<br>
+      • Repair services<br>
+      • Location & working hours<br>
+      • Bulk & business orders<br><br>
+      Or contact us directly at <strong>+256 701 913 028</strong>.`;
+
+    const fallbackQuick = ['Laptop prices','Delivery info','Contact us','Location & hours'];
+
+    function getReply(text) {
+      const lower = text.toLowerCase();
+      for (const entry of KB) {
+        if (entry.keys.some(k => lower.includes(k))) {
+          return { reply: entry.reply, quick: entry.quick };
+        }
+      }
+      return { reply: fallback, quick: fallbackQuick };
+    }
+
+    function appendMsg(html, type) {
+      const div = document.createElement('div');
+      div.className = `ai-msg ${type}`;
+      div.innerHTML = html;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function showTyping() {
+      const t = document.createElement('div');
+      t.className = 'ai-typing'; t.id = 'ai-typing-indicator';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(t);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('ai-typing-indicator');
+      if (t) t.remove();
+    }
+
+    function setQuickReplies(items) {
+      quickWrap.innerHTML = '';
+      items.forEach(label => {
+        const b = document.createElement('button');
+        b.className = 'ai-quick-btn';
+        b.textContent = label;
+        b.addEventListener('click', () => handleSend(label));
+        quickWrap.appendChild(b);
+      });
+    }
+
+    function handleSend(text) {
+      const msg = text || input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      quickWrap.innerHTML = '';
+      appendMsg(msg, 'user');
+      showTyping();
+      setTimeout(() => {
+        removeTyping();
+        const { reply, quick } = getReply(msg);
+        appendMsg(reply, 'bot');
+        setQuickReplies(quick);
+      }, 700 + Math.random() * 400);
+    }
+
+    // Open/close
+    btn.addEventListener('click', () => {
+      box.classList.toggle('open');
+      if (box.classList.contains('open') && messages.children.length === 0) {
+        setTimeout(() => {
+          appendMsg(`Hi! 👋 I'm the <strong>Mwema AI Assistant</strong>. Ask me anything about our laptops, prices, delivery, repairs, or services!`, 'bot');
+          setQuickReplies(['Laptop prices','Delivery info','Repairs','Location & hours','About us']);
+        }, 300);
+      }
+    });
+    closeBtn.addEventListener('click', () => box.classList.remove('open'));
+
+    // Wire up contact page banner button
+    const openFromPage = document.getElementById('open-ai-from-page');
+    if (openFromPage) {
+      openFromPage.addEventListener('click', () => {
+        box.classList.add('open');
+        if (messages.children.length === 0) {
+          setTimeout(() => {
+            appendMsg(`Hi! 👋 I'm the <strong>Mwema AI Assistant</strong>. Ask me anything about our laptops, prices, delivery, repairs, or services!`, 'bot');
+            setQuickReplies(['Laptop prices','Delivery info','Repairs','Location & hours','About us']);
+          }, 300);
+        }
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    // Send on button click or Enter
+    sendBtn.addEventListener('click', () => handleSend());
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') handleSend(); });
+  })();
+
   /* ── COUNTER ANIMATION ── */
   function animateCounter(el, end, suffix='') {
     let start = 0;
@@ -273,3 +564,4 @@ if (dotsContainer) {
       }
     });
   }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
