@@ -19,15 +19,31 @@
   /* ── NAVBAR ── */
   const navbar = document.getElementById('navbar');
   const backtop = document.getElementById('backtop');
+  let lastScrollY = 0;
+  
   function handleScroll() {
-    if(navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
-    if(backtop) backtop.classList.toggle('show', window.scrollY > 200);
+    const currentScroll = window.scrollY;
+    
+    // Navbar background
+    if(navbar) {
+      navbar.classList.toggle('scrolled', currentScroll > 60);
+    }
+    
+    // Back to top button with smooth appear/disappear
+    if(backtop) {
+      if(currentScroll > 300) {
+        backtop.classList.add('show');
+      } else {
+        backtop.classList.remove('show');
+      }
+    }
 
-    const sections = ['hero','services','about','products','why','testimonials','feedback','contact'];
+    // Active nav link based on section
+    const sections = ['hero','trust','services','about','products','why','testimonials','feedback','contact'];
     let current = '';
     sections.forEach(id => {
       const el = document.getElementById(id);
-      if(el && window.scrollY >= el.offsetTop - 120) current = id;
+      if(el && currentScroll >= el.offsetTop - 120) current = id;
     });
     document.querySelectorAll('.nav-links a').forEach(a => {
       const href = a.getAttribute('href');
@@ -35,69 +51,122 @@
         a.classList.toggle('active', href === `#${current}`);
       }
     });
+    
+    lastScrollY = currentScroll;
   }
-  window.addEventListener('scroll', handleScroll);
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
   window.addEventListener('load', handleScroll);
 
   /* ── SMOOTH SCROLL ── */
-  function scrollTo(target) {
-    document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
-  }
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      e.preventDefault();
-      const t = a.getAttribute('href');
-      document.querySelector(t)?.scrollIntoView({ behavior: 'smooth' });
+      const href = a.getAttribute('href');
+      const target = document.querySelector(href);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburger = document.getElementById('hamburger');
+        if(mobileMenu && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+        }
+      }
     });
   });
-  if(backtop) backtop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+  
+  // Back to top button functionality
+  if(backtop) {
+    backtop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ── MOBILE MENU ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
   function toggleMenu() {
-    const m = document.getElementById('mobileMenu');
-    const h = document.getElementById('hamburger');
-    m.classList.toggle('open');
-    h.classList.toggle('open');
+    if(hamburger && mobileMenu) {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    }
   }
+  
   function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
+    if(hamburger && mobileMenu) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  }
+  
+  if(hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+  }
+  
+  // Close menu when clicking on links
+  if(mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if(mobileMenu && mobileMenu.classList.contains('open')) {
+      if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    }
+  });
+  
+  // Make functions global for onclick attributes
+  window.toggleMenu = toggleMenu;
+  window.closeMenu = closeMenu;
+
+  /* ── HERO PARTICLES ENHANCED ── */
+  const dotsContainer = document.getElementById('heroDots');
+  if (dotsContainer) {
+    for (let i = 0; i < 35; i++) {
+      const d = document.createElement('div');
+      d.className = 'hero-dot';
+
+      const size = Math.random() * 6 + 2;
+      const duration = 8 + Math.random() * 14;
+      const delay = Math.random() * 10;
+
+      d.style.cssText = `
+        width:${size}px; 
+        height:${size}px;
+        left:${Math.random() * 100}%;
+        bottom:${Math.random() * -20}%;
+        animation-duration:${duration}s;
+        animation-delay:${delay}s;
+      `;
+
+      dotsContainer.appendChild(d);
+    }
   }
 
-/* ── HERO PARTICLES ── */
-const dotsContainer = document.getElementById('heroDots');
-
-if (dotsContainer) {
-  for (let i = 0; i < 25; i++) {
-    const d = document.createElement('div');
-    d.className = 'hero-dot';
-
-    const size = Math.random() * 6 + 2;
-
-    d.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random() * 100}%;
-      bottom:${Math.random() * -20}%;
-      animation-duration:${8 + Math.random() * 12}s;
-      animation-delay:${Math.random() * 8}s;
-    `;
-
-    dotsContainer.appendChild(d);
-  }
-}
-  /* ── REVEAL ON SCROLL ── */
+  /* ── REVEAL ON SCROLL - ENHANCED ── */
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if(e.isIntersecting) { e.target.classList.add('visible'); }
+      if(e.isIntersecting) { 
+        e.target.classList.add('visible');
+      }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.15 });
+  
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  /* ── HERO CAROUSEL ── */
+  /* ── HERO CAROUSEL - ENHANCED ── */
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroWords = document.querySelectorAll('.hero-word');
   let heroIndex = 0;
   let heroWordIndex = 0;
+  
   function rotateHero() {
     if (!heroSlides.length) return;
     heroSlides.forEach((slide, idx) => {
@@ -105,6 +174,7 @@ if (dotsContainer) {
     });
     heroIndex = (heroIndex + 1) % heroSlides.length;
   }
+  
   function rotateHeroWords() {
     if (!heroWords.length) return;
     heroWords.forEach((word, idx) => {
@@ -112,13 +182,14 @@ if (dotsContainer) {
     });
     heroWordIndex = (heroWordIndex + 1) % heroWords.length;
   }
+  
   if (heroSlides.length) {
     rotateHero();
-    setInterval(rotateHero, 3000);
+    setInterval(rotateHero, 4500); // Slightly adjusted for smoother visual breathing room
   }
   if (heroWords.length) {
     rotateHeroWords();
-    setInterval(rotateHeroWords, 2500);
+    setInterval(rotateHeroWords, 3200); // Tuned for better readability during transition
   }
 
   /* ── ADVANTAGE CARD TABS ── */
@@ -166,8 +237,8 @@ if (dotsContainer) {
       : filter === 'refurb'
         ? products.filter(p=>p.condition==='refurb')
         : products.filter(p=>p.type===filter);
-    grid.innerHTML = filtered.map(p => `
-      <div class="product-card" data-type="${p.type}" data-condition="${p.condition}">
+    grid.innerHTML = filtered.map((p, idx) => `
+      <div class="product-card reveal" data-type="${p.type}" data-condition="${p.condition}" style="animation-delay: ${idx * 0.1}s">
         <div class="product-img">
           <img src="${p.img}" alt="${p.name}" loading="lazy"/>
           <span class="product-condition ${p.condition==='new'?'condition-new':'condition-refurb'}">
@@ -192,6 +263,9 @@ if (dotsContainer) {
         </div>
       </div>
     `).join('');
+    
+    // Re-observe newly added elements
+    document.querySelectorAll('.product-card.reveal').forEach(el => revealObs.observe(el));
   }
 
   function filterProducts(type, btn) {
@@ -231,28 +305,45 @@ if (dotsContainer) {
 
   /* ── FORM SUBMISSIONS ── */
   function submitFeedback() {
-    const name = document.getElementById('fbName').value.trim();
-    const msg  = document.getElementById('fbMessage').value.trim();
-    if(!name || !msg) { alert('Please fill in your name and message.'); return; }
-    document.getElementById('feedbackMsg').classList.add('success');
-    document.getElementById('fbName').value = '';
-    document.getElementById('fbContact').value = '';
-    document.getElementById('fbType').value = '';
-    document.getElementById('fbMessage').value = '';
-    selectedRating = 0;
-    document.querySelectorAll('#starRating i').forEach(s => s.className='far fa-star');
-    setTimeout(() => document.getElementById('feedbackMsg').classList.remove('success'), 5000);
+    const name = document.getElementById('fbName')?.value.trim();
+    const msg  = document.getElementById('fbMessage')?.value.trim();
+    if(!name || !msg) { 
+      alert('Please fill in your name and message.'); 
+      return; 
+    }
+    const feedbackMsg = document.getElementById('feedbackMsg');
+    if(feedbackMsg) {
+      feedbackMsg.classList.add('success');
+      document.getElementById('fbName').value = '';
+      document.getElementById('fbContact').value = '';
+      document.getElementById('fbType').value = '';
+      document.getElementById('fbMessage').value = '';
+      selectedRating = 0;
+      document.querySelectorAll('#starRating i').forEach(s => s.className='far fa-star');
+      setTimeout(() => feedbackMsg.classList.remove('success'), 5000);
+    }
   }
 
   function submitContact() {
-    const name  = document.getElementById('ctName').value.trim();
-    const phone = document.getElementById('ctPhone').value.trim();
-    if(!name || !phone) { alert('Please provide your name and phone number.'); return; }
-    document.getElementById('contactMsg').classList.add('success');
-    ['ctName','ctPhone','ctEmail','ctMessage'].forEach(id => document.getElementById(id).value='');
-    document.getElementById('ctNeed').value = '';
-    document.getElementById('ctBudget').value = '';
-    setTimeout(() => document.getElementById('contactMsg').classList.remove('success'), 6000);
+    const name  = document.getElementById('ctName')?.value.trim();
+    const phone = document.getElementById('ctPhone')?.value.trim();
+    if(!name || !phone) { 
+      alert('Please provide your name and phone number.'); 
+      return; 
+    }
+    const contactMsg = document.getElementById('contactMsg');
+    if(contactMsg) {
+      contactMsg.classList.add('success');
+      ['ctName','ctPhone','ctEmail','ctMessage'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.value='';
+      });
+      const ctNeed = document.getElementById('ctNeed');
+      const ctBudget = document.getElementById('ctBudget');
+      if(ctNeed) ctNeed.value = '';
+      if(ctBudget) ctBudget.value = '';
+      setTimeout(() => contactMsg.classList.remove('success'), 6000);
+    }
   }
 
   /* ── AI CHAT WIDGET ── */
@@ -265,7 +356,7 @@ if (dotsContainer) {
       </button>
       <div id="ai-chat-box" role="dialog" aria-label="Mwema AI Assistant">
         <div class="ai-chat-header">
-          <div class="ai-chat-avatar"><i class="fas fa-robot"></i></div>
+          <div class="ai-chat-avatar"><img src="mwemalogo.png" alt="Mwema Solutions" /></div>
           <div class="ai-chat-header-info">
             <strong>Mwema AI Assistant</strong>
             <span>Online — Ask me anything</span>

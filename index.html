@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to MWEMA SOLUTIONS</title>
+  <title>Mwema Solutions | Uganda's Leading Computer & Tech Provider</title>
+  <meta name="description" content="Affordable laptops, desktops & tech solutions across Uganda. Student packages, business bulk orders, repairs & nationwide delivery. Based in Kampala."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -23,15 +24,15 @@
 
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="mwema.html" class="nav-logo">
-      <div class="nav-logo-icon"><i class="fas fa-microchip"></i></div>
+    <a href="index.html" class="nav-logo">
+      <img src="mwemalogo.png" alt="Mwema Solutions Logo" class="nav-logo-img" />
       <div class="nav-logo-text">
         <strong>MWEMA</strong>
         <span>Solutions</span>
       </div>
     </a>
     <ul class="nav-links">
-      <li><a href="mwema.html" class="active">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="products.html">Products</a></li>
@@ -40,7 +41,7 @@
     </ul>
     <div class="nav-cta">
       <a href="contact.html" class="btn-primary"><i class="fas fa-phone-alt"></i> Get in Touch</a>
-      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
       </div>
     </div>
@@ -48,7 +49,7 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="mwema.html">Home</a>
+  <a href="index.html">Home</a>
   <a href="services.html">Services</a>
   <a href="about.html">About Us</a>
   <a href="products.html">Products</a>
@@ -56,54 +57,55 @@
   <a href="contact.html">Contact</a>
 </div>
 
-<section id="hero">
-  <div class="hero-carousel">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80');"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1600&q=80');"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=80');"></div>
+<section id="hero" class="service-hero">
+  <div class="hero-bg-slider">
+    <!-- Changing background animations with relevant computer business imagery -->
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=1600&q=80');"></div>
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-overlay" style="background: linear-gradient(180deg, rgba(10,22,40,0.4) 0%, rgba(10,22,40,0.8) 100%);"></div>
+  <div class="service-hero-overlay"></div>
   <div class="hero-dots" id="heroDots"></div>
-
-  <div class="hero-inner container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
+  <div class="container service-hero-content reveal">
+    <div class="hero-badge">
+      <span class="dot"></span>
       Uganda's Trusted Tech Partner
+    </div>
+    <h1 class="section-title" style="margin-bottom:20px;">
+      Empowering<br>
+      <span class="gold">Ideas &amp; Possibilities</span>
+    </h1>
+    <p class="section-desc" style="max-width:620px;margin-bottom:24px;">
+      Connecting students and businesses across Uganda to affordable, reliable computers.<br>
+      Right Device. Right Price. Right Support — always.
+    </p>
+    <div class="hero-wordslider" style="margin-bottom:28px;">
+      <span class="hero-word active">Fast delivery across Kampala and nationwide.</span>
+      <span class="hero-word">Trusted refurbished laptops with local support.</span>
+      <span class="hero-word">Student-friendly pricing. Business-ready performance.</span>
+    </div>
+    <div class="hero-cta-group" style="margin-bottom:32px;">
+      <a href="products.html" class="btn-primary">
+        <i class="fas fa-laptop"></i> Browse Computers
+      </a>
+      <a href="about.html" class="btn-outline">
+        <i class="fas fa-play-circle"></i> Our Story
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>500+</strong>
+        <span>Devices Sold</span>
       </div>
-      <h1 class="hero-title">
-        Empowering ideas and responsibilities
-      </h1>
-      <p class="hero-sub">
-        Connecting students and businesses across Uganda to affordable, reliable computers.
-        <br>Right Device. Right Price. Right Support — always.
-      </p>
-      <div class="hero-wordslider">
-        <span class="hero-word active">Fast delivery across Kampala and nationwide.</span>
-        <span class="hero-word">Trusted refurbished laptops with local support.</span>
-        <span class="hero-word">Student-friendly pricing. Business-ready performance.</span>
+      <div class="hero-stat">
+        <strong>5★</strong>
+        <span>Client Ratings</span>
       </div>
-      <div class="hero-cta-group">
-        <a href="products.html" class="btn-primary">
-          <i class="fas fa-laptop"></i> Browse Computers
-        </a>
-        <a href="about.html" class="btn-outline">
-          <i class="fas fa-play-circle"></i> Our Story
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>500+</strong>
-          <span>Devices Sold</span>
-        </div>
-        <div class="hero-stat">
-          <strong>5★</strong>
-          <span>Client Ratings</span>
-        </div>
-        <div class="hero-stat">
-          <strong>UG-wide</strong>
-          <span>Delivery</span>
-        </div>
+      <div class="hero-stat">
+        <strong>UG-wide</strong>
+        <span>Delivery</span>
       </div>
     </div>
   </div>
@@ -123,46 +125,46 @@
   </div>
 </div>
 
-<section class="section">
+<section class="section" style="padding-top:48px;padding-bottom:48px;">
   <div class="container">
     <div class="section-head reveal">
       <span class="section-label">Explore</span>
-      <h2 class="section-title">Find the Right Page for Your tech-related Needs</h2>
+      <h2 class="section-title">Find the Right Page for Your Needs</h2>
       <p class="section-desc">Use the quick links below to go directly to services, product listings, our story, or contact support.</p>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="sc-icon"><i class="fas fa-concierge-bell"></i></div>
         <div class="sc-title">Services</div>
-        <div class="sc-desc">Get knowledge about computer sales, business packages, repairs, and support options.</div>
+        <div class="sc-desc">Learn about our computer sales, business packages, repairs, and support options.</div>
         <a href="services.html" class="btn-outline">View Services</a>
       </div>
       <div class="service-card reveal">
         <div class="sc-icon"><i class="fas fa-laptop-code"></i></div>
         <div class="sc-title">Products</div>
-        <div class="sc-desc">Browse featured laptops, desktops, and refurbished devices with ease</div>
+        <div class="sc-desc">Browse featured laptops, desktops, and refurbished devices with easy filtering.</div>
         <a href="products.html" class="btn-outline">Browse Products</a>
       </div>
       <div class="service-card reveal">
         <div class="sc-icon"><i class="fas fa-users"></i></div>
         <div class="sc-title">About</div>
         <div class="sc-desc">Read our story, see our mission, and meet the founder behind Mwema Solutions.</div>
-        <a href="about.html" class="btn-outline">Meet the Mwema Team</a>
+        <a href="about.html" class="btn-outline">Meet the Team</a>
       </div>
       <div class="service-card reveal">
         <div class="sc-icon"><i class="fas fa-phone-square-alt"></i></div>
         <div class="sc-title">Contact</div>
-        <div class="sc-desc">Reach out to us and get fast support.</div>
+        <div class="sc-desc">Use our contact form, call, or WhatsApp for quotes, repairs, and fast support.</div>
         <a href="contact.html" class="btn-outline">Contact Us</a>
       </div>
     </div>
   </div>
 </section>
 
-<div id="cta-banner">
+<div id="cta-banner" style="margin-top:0;margin-bottom:0;">
   <div class="container">
-    <h2>Advance Your Tech Journey with Us</h2>
-    <p>We are here at your service</p>
+    <h2>Ready to get started?</h2>
+    <p>Choose the page that matches what you need and we'll take you straight there.</p>
     <div class="cta-btns">
       <a href="tel:+256701913028" class="btn-dark"><i class="fas fa-phone-alt"></i> Call Now</a>
       <a href="contact.html" class="btn-white-outline"><i class="fas fa-envelope"></i> Email Us</a>
@@ -175,13 +177,13 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo-wrap">
-          <div class="nav-logo-icon"><i class="fas fa-microchip"></i></div>
-          <div class="nav-logo-text">
+          <img src="mwemalogo.png" alt="Mwema Solutions Logo" class="footer-logo-img" />
+          <div class="footer-logo-text">
             <strong>MWEMA</strong>
             <span>Solutions</span>
           </div>
         </div>
-        <p>Connecting students and businesses across Uganda to affordable, reliable technology since 2022.</p>
+        <p>Connecting students and businesses across Uganda to affordable, reliable technology since 2019.</p>
         <div class="footer-social">
           <a href="tel:+256701913028" class="social-btn"><i class="fas fa-phone"></i></a>
           <a href="https://wa.me/256701913028" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-whatsapp"></i></a>
@@ -192,7 +194,7 @@
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="mwema.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="products.html">Products</a></li>
@@ -208,22 +210,21 @@
           <li><a href="products.html">Desktop PCs</a></li>
           <li><a href="products.html">Refurbished</a></li>
           <li><a href="products.html">Accessories</a></li>
-          
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="tel:+256701913028">WhatsApp: +256 701 913 028</a></li>
-          <li><a href="tel:+256784841119">Tel: +256 784 841 119</a></li>
-          <li><a href="mailto:mwemasolutions.it@gmail.com">Email Us: mwemasolutions.it@gmail.com</a></li>
-          <li><a href="contact.html">Address: Makerere Kikoni, Kampala</a></li>
+          <li><a href="tel:+256701913028">+256 701 913 028</a></li>
+          <li><a href="tel:+256784841119">+256 784 841 119</a></li>
+          <li><a href="mailto:mwemasolutions.it@gmail.com">mwemasolutions.it@gmail.com</a></li>
+          <li><a href="contact.html">Makerere Kikoni, Kampala</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 <span>Mwema Solutions</span>. All Rights Reserved.</p>
-      <p>Designed with <span>love</span> for Uganda's digital future.</p>
+      <p>Designed with <span>❤</span> for Uganda's digital future.</p>
     </div>
   </div>
 </footer>
