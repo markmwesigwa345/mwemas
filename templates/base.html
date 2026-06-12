@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Mwema Solutions{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Affordable laptops, desktops and tech solutions across Uganda. Student packages, business bulk orders, repairs and nationwide delivery. Based in Kampala.{% endblock %}"/>
+  <meta property="og:title" content="{% block og_title %}Mwema Solutions{% endblock %}"/>
+  <meta property="og:description" content="{% block og_description %}Affordable laptops, desktops and tech solutions across Uganda. Order online and track your delivery.{% endblock %}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="{{ url_for('static', filename='img/mwemalogo.jpg') }}"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mwema.css') }}"/>
+  <link rel="icon" href="{{ url_for('static', filename='img/mwemalogo.jpg') }}" type="image/jpeg"/>
+  {% block extra_head %}{% endblock %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Mwema Solutions",
+    "image": "{{ url_for('static', filename='img/mwemalogo.jpg', _external=True) }}",
+    "telephone": "+256701913028",
+    "email": "mwemasolutions.it@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Makerere Kikoni",
+      "addressLocality": "Kampala",
+      "addressCountry": "UG"
+    },
+    "url": "{{ request.url_root }}",
+    "priceRange": "UGX"
+  }
+  </script>
+</head>
+<body data-active-page="{{ active_page|default('') }}">
+
+<div id="loader">
+  <div class="loader-logo">MWEMA SOLUTIONS</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<button id="backtop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<a href="https://wa.me/256701913028" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="{{ url_for('pages.index') }}" class="nav-logo">
+      <img src="{{ url_for('static', filename='img/mwemalogo.jpg') }}" alt="Mwema Solutions Logo" class="nav-logo-img" />
+      <div class="nav-logo-text">
+        <strong>MWEMA</strong>
+        <span>Solutions</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('pages.index') }}" class="{% if active_page == 'home' %}active{% endif %}">Home</a></li>
+      <li><a href="{{ url_for('pages.services') }}" class="{% if active_page == 'services' %}active{% endif %}">Services</a></li>
+      <li><a href="{{ url_for('pages.about') }}" class="{% if active_page == 'about' %}active{% endif %}">About</a></li>
+      <li><a href="{{ url_for('pages.products') }}" class="{% if active_page == 'products' %}active{% endif %}">Products</a></li>
+      <li><a href="{{ url_for('pages.about') }}#testimonials">Clients</a></li>
+      <li><a href="{{ url_for('pages.track') }}" class="{% if active_page == 'track' %}active{% endif %}">Track Order</a></li>
+      <li><a href="{{ url_for('pages.contact') }}" class="{% if active_page == 'contact' %}active{% endif %}">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="{{ url_for('pages.checkout') }}" class="nav-cart-btn" aria-label="View cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+      <a href="{{ url_for('pages.contact') }}" class="btn-primary"><i class="fas fa-phone-alt"></i> Get in Touch</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="{{ url_for('pages.index') }}">Home</a>
+  <a href="{{ url_for('pages.services') }}">Services</a>
+  <a href="{{ url_for('pages.about') }}">About Us</a>
+  <a href="{{ url_for('pages.products') }}">Products</a>
+  <a href="{{ url_for('pages.about') }}#testimonials">Our Clients</a>
+  <a href="{{ url_for('pages.track') }}">Track Order</a>
+  <a href="{{ url_for('pages.checkout') }}">Cart</a>
+  <a href="{{ url_for('pages.contact') }}">Contact</a>
+</div>
+
+{% block content %}{% endblock %}
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="{{ url_for('static', filename='img/mwemalogo.jpg') }}" alt="Mwema Solutions Logo" class="footer-logo-img" />
+          <div class="footer-logo-text">
+            <strong>MWEMA</strong>
+            <span>Solutions</span>
+          </div>
+        </div>
+        <p>Connecting students and businesses across Uganda to affordable, reliable technology since 2019.</p>
+        <div class="footer-social">
+          <a href="tel:+256701913028" class="social-btn" title="Call"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/256701913028" target="_blank" rel="noopener" class="social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:mwemasolutions.it@gmail.com" class="social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{{ url_for('pages.index') }}">Home</a></li>
+          <li><a href="{{ url_for('pages.services') }}">Services</a></li>
+          <li><a href="{{ url_for('pages.about') }}">About Us</a></li>
+          <li><a href="{{ url_for('pages.products') }}">Products</a></li>
+          <li><a href="{{ url_for('pages.track') }}">Track Order</a></li>
+          <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="{{ url_for('pages.products') }}?filter=laptop">HP Laptops</a></li>
+          <li><a href="{{ url_for('pages.products') }}?filter=laptop">Dell Laptops</a></li>
+          <li><a href="{{ url_for('pages.products') }}?filter=laptop">Lenovo Laptops</a></li>
+          <li><a href="{{ url_for('pages.products') }}?filter=desktop">Desktop PCs</a></li>
+          <li><a href="{{ url_for('pages.products') }}?filter=refurb">Refurbished</a></li>
+          <li><a href="{{ url_for('pages.contact') }}">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+256701913028">+256 701 913 028</a></li>
+          <li><a href="tel:+256784841119">+256 784 841 119</a></li>
+          <li><a href="mailto:mwemasolutions.it@gmail.com">mwemasolutions.it@gmail.com</a></li>
+          <li><a href="{{ url_for('pages.contact') }}">Makerere Kikoni, Kampala</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span>Mwema Solutions</span>. All Rights Reserved.</p>
+      <p>Designed with <span>&#10084;</span> for Uganda's digital future.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/api.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/cart.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/products.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/mwema.js') }}" defer></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

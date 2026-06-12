@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}About | Mwema Solutions{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:100px;padding-bottom:32px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">About Us</span>
+      <h2 class="section-title">Who We Are and Why Mwema Works</h2>
+      <p class="section-desc">Learn more about our mission, our team, and how we support technology access across Uganda.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section" style="padding-top:0;padding-bottom:48px;">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img-wrap reveal">
+        <div class="about-corner"></div>
+        <div class="about-main-img">
+          <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80" alt="Technology workspace"/>
+        </div>
+        <div class="about-accent"><strong>5+</strong><span>Years Serving<br>Uganda</span></div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-head">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">More Than Laptops.<br><span class="gold">We Provide Possibilities.</span></h2>
+        </div>
+        <p class="about-text">Mwema Solutions was born from a simple but powerful mission: to make quality computers accessible to every student and small business in Uganda.</p>
+        <p class="about-text">Based in Makerere Kikoni, Kampala, we serve clients across the country — from Kampala to Mbarara, Ibanda to Gulu.</p>
+        <div class="owner-card">
+          <div class="owner-avatar owner-avatar-img">
+            <img src="{{ url_for('static', filename='img/mwemaphoto.png') }}" alt="Mwesigwa Mark" onerror="this.parentElement.textContent='MM';this.remove();"/>
+          </div>
+          <div class="owner-info">
+            <strong>Mwesigwa Mark</strong>
+            <span>Founder &amp; CEO, Mwema Solutions</span>
+            <p>Technology enthusiast committed to driving digital transformation and economic empowerment across Uganda.</p>
+          </div>
+        </div>
+        <div class="about-horizontal-section reveal">
+          <div class="about-client-highlight">
+            <span class="section-label">Client Focus</span>
+            <h3>Our story is written with every client.</h3>
+            <p>Clients trust Mwema because we listen first and support honestly after the sale.</p>
+            <div class="about-client-quote">
+              <strong>"Mwema helped us choose the right laptop for remote learning."</strong>
+              <span>- Sarah, Student, Kampala</span>
+            </div>
+          </div>
+          <div class="about-pillars">
+            <div class="pillar"><div class="pillar-icon"><i class="fas fa-shield-alt"></i></div><div class="pillar-text"><strong>Trusted Quality</strong><span>Inspected devices</span></div></div>
+            <div class="pillar"><div class="pillar-icon"><i class="fas fa-handshake"></i></div><div class="pillar-text"><strong>Built on Trust</strong><span>Honest guidance</span></div></div>
+            <div class="pillar"><div class="pillar-icon"><i class="fas fa-users"></i></div><div class="pillar-text"><strong>Student Focused</strong><span>Every budget</span></div></div>
+            <div class="pillar"><div class="pillar-icon"><i class="fas fa-chart-line"></i></div><div class="pillar-text"><strong>Growing Impact</strong><span>Touching lives</span></div></div>
+          </div>
+        </div>
+        <div class="advantage-grid reveal">
+          <div class="advantage-card active"><h3>Fast Delivery</h3><p>Local delivery across Kampala and fast nationwide shipping.</p></div>
+          <div class="advantage-card"><h3>Worry-Free Support</h3><p>Reliable support for repairs, diagnostics, and device training.</p></div>
+          <div class="advantage-card"><h3>Flexible Financing</h3><p>Affordable payment options for students and schools.</p></div>
+          <div class="advantage-card"><h3>Custom Bundles</h3><p>Bundled device packages and school-ready support.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="section" style="padding-top:48px;padding-bottom:48px;">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;max-width:560px;margin:0 auto 48px;">
+      <span class="section-label">Satisfied Clients</span>
+      <h2 class="section-title">What Our <span class="gold">Clients Say</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Real stories from real clients who trusted Mwema Solutions with their technology needs.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">Mwema Solutions provided our company with excellent laptops at a price that fit our budget perfectly. The service was professional, the delivery was fast, and the after-sales support has been outstanding.</p>
+        <div class="testi-author"><div class="testi-avatar">TA</div><div><strong>Tumuhimbise Asaph</strong><span>CEO, KUBWA VENTURES</span><small>Kampala, Uganda</small></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">As a business owner in Ibanda, getting reliable technology support felt impossible — until I found Mwema Solutions. Mark personally guided me through choosing the right computer for my needs.</p>
+        <div class="testi-author"><div class="testi-avatar">AI</div><div><strong>Aryatuha Isaac</strong><span>CEO, ISAAC FRUITS</span><small>Ibanda, Uganda</small></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">Mwema Solutions truly understands what small businesses need. I bought a laptop for my fashion business in Mbarara and the entire experience was seamless.</p>
+        <div class="testi-author"><div class="testi-avatar">MC</div><div><strong>Muhereza Christabel</strong><span>CEO, MBEGA FASHIONS</span><small>Mbarara, Uganda</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="cta-banner">
+  <div class="container">
+    <h2>Want to know more?</h2>
+    <p>Reach out for a direct chat, a quote, or a tailored device package for your school or business.</p>
+    <div class="cta-btns">
+      <a href="tel:+256701913028" class="btn-dark"><i class="fas fa-phone-alt"></i> Call Now</a>
+      <a href="{{ url_for('pages.contact') }}" class="btn-white-outline"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed | Mwema Solutions{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:100px;">
+  <div class="container" style="max-width:720px;">
+    <div class="order-confirm-box reveal" id="orderConfirmBox">
+      <div class="order-confirm-icon"><i class="fas fa-check-circle"></i></div>
+      <h2 class="section-title">Order Placed Successfully!</h2>
+      <p class="section-desc">Thank you for choosing Mwema Solutions. Your order has been received.</p>
+
+      <div class="order-confirm-details">
+        <div class="confirm-row"><span>Order ID</span><strong id="confirmOrderId">—</strong></div>
+        <div class="confirm-row"><span>Total</span><strong id="confirmTotal">—</strong></div>
+        <div class="confirm-row"><span>Payment</span><strong id="confirmPayment">—</strong></div>
+        <div class="confirm-row"><span>Status</span><strong id="confirmStatus">—</strong></div>
+      </div>
+
+      <div class="payment-instructions" id="paymentInstructions" style="display:none;">
+        <h3><i class="fas fa-mobile-alt"></i> Mobile Money Payment Instructions</h3>
+        <p id="mmInstructions"></p>
+        <ul>
+          <li><strong>MTN:</strong> <span id="mmMtn">+256 701 913 028</span></li>
+          <li><strong>Airtel:</strong> <span id="mmAirtel">+256 784 841 119</span></li>
+          <li><strong>Reference:</strong> <span id="mmReference">—</span></li>
+          <li><strong>Amount:</strong> <span id="mmAmount">—</span></li>
+        </ul>
+        <p class="payment-note">After payment, you may WhatsApp us your transaction screenshot for faster confirmation.</p>
+      </div>
+
+      <div class="confirm-actions">
+        <a href="#" id="confirmTrackLink" class="btn-primary"><i class="fas fa-truck"></i> Track Order</a>
+        <a href="#" id="confirmWhatsappLink" class="btn-outline" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Share on WhatsApp</a>
+        <a href="{{ url_for('pages.products') }}" class="btn-outline"><i class="fas fa-laptop"></i> Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/order-confirmation.js') }}" defer></script>
+{% endblock %}

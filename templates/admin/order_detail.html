@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order {{ order.order_number }} | Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mwema.css') }}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h2>Mwema Admin</h2>
+      <nav>
+        <a href="{{ url_for('admin.dashboard') }}" class="active"><i class="fas fa-list"></i> Orders</a>
+        <a href="{{ url_for('admin.products_page') }}"><i class="fas fa-laptop"></i> Products</a>
+      </nav>
+      <form method="post" action="{{ url_for('admin.logout') }}"><button type="submit" class="admin-logout">Logout</button></form>
+    </aside>
+    <main class="admin-main">
+      <a href="{{ url_for('admin.dashboard') }}" class="admin-back-link">&larr; Back to orders</a>
+      <div class="admin-header">
+        <h1>{{ order.order_number }}</h1>
+        <span class="status-badge status-{{ order.status }}">{{ order.status.replace('_', ' ').title() }}</span>
+      </div>
+
+      <div class="admin-detail-grid">
+        <div class="admin-card">
+          <h3>Customer</h3>
+          <p><strong>{{ order.customer_name }}</strong></p>
+          <p>{{ order.phone }}</p>
+          <p>{{ order.email or 'No email' }}</p>
+          <p>{{ order.district }} — {{ order.address }}</p>
+          {% if order.notes %}<p><em>{{ order.notes }}</em></p>{% endif %}
+        </div>
+        <div class="admin-card">
+          <h3>Payment</h3>
+          <p>Method: <strong>{{ order.payment_method }}</strong></p>
+          <p>Status: <strong>{{ order.payment_status }}</strong></p>
+          <p>Subtotal: UGX {{ "{:,}".format(order.subtotal_ugx) }}</p>
+          <p>Delivery: UGX {{ "{:,}".format(order.delivery_fee_ugx) }}</p>
+          <p>Total: <strong>UGX {{ "{:,}".format(order.total_ugx) }}</strong></p>
+          {% if order.payment_method == 'mobile_money' and order.payment_status == 'pending' %}
+          <button class="form-submit admin-confirm-pay" data-order-id="{{ order.id }}">Confirm Mobile Money Payment</button>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>Items</h3>
+        <ul class="admin-items-list">
+          {% for item in order.items %}
+          <li>{{ item.product_name }} x{{ item.quantity }} — UGX {{ "{:,}".format(item.unit_price_ugx * item.quantity) }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="admin-card">
+        <h3>Update Status</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>New Status</label>
+            <select id="adminStatus">
+              {% for s in statuses %}
+              <option value="{{ s }}" {% if order.status == s %}selected{% endif %}>{{ s.replace('_', ' ').title() }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message (optional)</label>
+            <input type="text" id="adminStatusMsg" placeholder="Note for customer timeline"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Admin Note (internal)</label>
+          <textarea id="adminNote">{{ order.admin_note or '' }}</textarea>
+        </div>
+        <button class="form-submit" id="adminUpdateBtn" data-order-id="{{ order.id }}">Save Changes</button>
+        <div class="form-msg" id="adminMsg"></div>
+      </div>
+
+      <div class="admin-card">
+        <h3>Status Timeline</h3>
+        <div class="order-timeline">
+          {% for event in order.events %}
+          <div class="timeline-item done">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>{{ event.status.replace('_', ' ').title() }}</strong>
+              <p>{{ event.message or '' }}</p>
+              <small>{{ event.created_at.strftime('%d %b %Y, %H:%M') if event.created_at else '' }}</small>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const orderId = {{ order.id }};
+    document.getElementById('adminUpdateBtn')?.addEventListener('click', async () => {
+      const res = await fetch(`/admin/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          status: document.getElementById('adminStatus').value,
+          message: document.getElementById('adminStatusMsg').value,
+          admin_note: document.getElementById('adminNote').value
+        })
+      });
+      const msg = document.getElementById('adminMsg');
+      if (res.ok) { msg.className = 'form-msg success show'; msg.textContent = 'Order updated.'; setTimeout(() => location.reload(), 800); }
+      else { msg.className = 'form-msg form-msg-error show'; msg.textContent = 'Update failed.'; }
+    });
+    document.querySelector('.admin-confirm-pay')?.addEventListener('click', async (e) => {
+      const res = await fetch(`/admin/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirm_payment: true })
+      });
+      if (res.ok) location.reload();
+    });
+  </script>
+</body>
+</html>

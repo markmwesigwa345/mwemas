@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Mwema Solutions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mwema.css') }}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="admin-body">
+  <div class="admin-login-wrap">
+    <form class="admin-login-box" method="post" action="{{ url_for('admin.login') }}">
+      <h1>Mwema Admin</h1>
+      <p>Sign in to manage orders and products</p>
+      {% if error %}<div class="form-msg form-msg-error show">{{ error }}</div>{% endif %}
+      <div class="form-group"><label>Username</label><input type="text" name="username" required/></div>
+      <div class="form-group"><label>Password</label><input type="password" name="password" required/></div>
+      <button class="form-submit" type="submit">Sign In</button>
+      <a href="{{ url_for('pages.index') }}" class="admin-back-link">&larr; Back to website</a>
+    </form>
+  </div>
+</body>
+</html>

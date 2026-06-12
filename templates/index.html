@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Mwema Solutions — Affordable Computers in Uganda{% endblock %}
+{% block content %}
+<section id="hero" class="service-hero">
+  <div class="hero-bg-slider">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=1600&q=80');"></div>
+  </div>
+  <div class="hero-overlay" style="background: linear-gradient(180deg, rgba(10,22,40,0.4) 0%, rgba(10,22,40,0.8) 100%);"></div>
+  <div class="service-hero-overlay"></div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="container service-hero-content reveal">
+    <h1 class="section-title" style="margin-bottom:20px;">
+      Empowering<br>
+      <span class="gold">Ideas &amp; Possibilities</span>
+    </h1>
+    <p class="section-desc" style="max-width:620px;margin-bottom:24px;">
+      Connecting students and businesses across Uganda to affordable, reliable computers.<br>
+      Right Device. Right Price. Right Support Always.
+    </p>
+    <div class="hero-wordslider" style="margin-bottom:28px;">
+      <span class="hero-word active">Fast delivery across Kampala and nationwide.</span>
+      <span class="hero-word">Trusted refurbished laptops with local support.</span>
+      <span class="hero-word">Student-friendly pricing. Business-ready performance.</span>
+    </div>
+    <div class="hero-cta-group" style="margin-bottom:32px;">
+      <a href="{{ url_for('pages.products') }}" class="btn-primary">
+        <i class="fas fa-laptop"></i> Browse Computers
+      </a>
+      <a href="{{ url_for('pages.about') }}" class="btn-outline">
+        <i class="fas fa-play-circle"></i> Our Story
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>500+</strong><span>Devices Sold</span></div>
+      <div class="hero-stat"><strong>5&#9733;</strong><span>Client Ratings</span></div>
+      <div class="hero-stat"><strong>UG-wide</strong><span>Delivery</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="trust">
+  <div class="trust-inner">
+    <span class="trust-label">Trusted For</span>
+    <div class="trust-divider"></div>
+    <div class="trust-items">
+      <div class="trust-item"><i class="fas fa-check-circle"></i> Students &amp; Schools</div>
+      <div class="trust-item"><i class="fas fa-check-circle"></i> Small Businesses</div>
+      <div class="trust-item"><i class="fas fa-check-circle"></i> Corporate Offices</div>
+      <div class="trust-item"><i class="fas fa-check-circle"></i> NGOs &amp; Institutions</div>
+      <div class="trust-item"><i class="fas fa-check-circle"></i> Nationwide Delivery</div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="featured-products-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Featured</span>
+      <h2 class="section-title">Popular <span class="gold">Computers</span></h2>
+      <p class="section-desc">Top picks from our catalog — add to cart and order with delivery across Uganda.</p>
+    </div>
+    <div class="products-grid" id="featuredProductsGrid"></div>
+    <div style="text-align:center;margin-top:32px;" class="reveal">
+      <a href="{{ url_for('pages.products') }}" class="btn-outline"><i class="fas fa-laptop"></i> View All Products</a>
+    </div>
+  </div>
+</section>
+
+<section class="section home-testimonial-strip">
+  <div class="container">
+    <div class="testi-card reveal" style="max-width:720px;margin:0 auto;text-align:center;">
+      <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      <p class="testi-text">"Mwema Solutions provided our company with excellent laptops at a price that fit our budget perfectly. Fast delivery and outstanding after-sales support."</p>
+      <div class="testi-author" style="justify-content:center;border-top:none;padding-top:0;">
+        <div class="testi-avatar">TA</div>
+        <div>
+          <strong>Tumuhimbise Asaph</strong>
+          <span>CEO, KUBWA VENTURES — Kampala</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px;padding-bottom:48px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="section-title">Find the Right Page for Your Needs</h2>
+      <p class="section-desc">Use the quick links below to go directly to services, product listings, our story, or contact support.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-concierge-bell"></i></div>
+        <div class="sc-title">Services</div>
+        <div class="sc-desc">Computer sales, business packages, repairs, and support options.</div>
+        <a href="{{ url_for('pages.services') }}" class="btn-outline">View Services</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="sc-title">Products</div>
+        <div class="sc-desc">Browse laptops, desktops, and refurbished devices with easy filtering.</div>
+        <a href="{{ url_for('pages.products') }}" class="btn-outline">Browse Products</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-truck"></i></div>
+        <div class="sc-title">Track Order</div>
+        <div class="sc-desc">Check your order status with your order ID and phone number.</div>
+        <a href="{{ url_for('pages.track') }}" class="btn-outline">Track Now</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-phone-square-alt"></i></div>
+        <div class="sc-title">Contact</div>
+        <div class="sc-desc">Call, WhatsApp, or send an enquiry for quotes and support.</div>
+        <a href="{{ url_for('pages.contact') }}" class="btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="cta-banner" style="margin-top:0;margin-bottom:0;">
+  <div class="container">
+    <h2>Ready to get started?</h2>
+    <p>Order online, pay on delivery or via mobile money, and track your order every step of the way.</p>
+    <div class="cta-btns">
+      <a href="{{ url_for('pages.products') }}" class="btn-dark"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+      <a href="tel:+256701913028" class="btn-white-outline"><i class="fas fa-phone-alt"></i> Call Now</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const grid = document.getElementById('featuredProductsGrid');
+  if (!grid || !window.MwemaProducts) return;
+  const products = await MwemaProducts.fetchAll({ featured: 3 });
+  grid.innerHTML = products.map((p, idx) => MwemaProducts.renderCard(p, idx, { showCart: true })).join('');
+  document.querySelectorAll('#featuredProductsGrid .reveal').forEach(el => {
+    if (window.mwemaRevealObserve) window.mwemaRevealObserve(el);
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Services | Mwema Solutions{% endblock %}
+{% block meta_description %}Computer sales, business packages, student solutions, repairs, and nationwide delivery across Uganda.{% endblock %}
+{% block content %}
+<section id="servicesHero" class="service-hero">
+  <div class="hero-bg-slider">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1600&q=80');"></div>
+  </div>
+  <div class="service-hero-overlay"></div>
+  <div class="container service-hero-content reveal">
+    <h1 class="section-title">Mwema Solutions experience<br> Delivery every time.</h1>
+    <p class="section-desc">Safe delivery across Uganda for students and teams. Order online and track your package every step.</p>
+    <a href="{{ url_for('pages.contact') }}" class="btn-primary">Get a Delivery Quote</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">Technology Solutions for Students and Businesses</h2>
+      <p class="section-desc">Explore the solutions Mwema offers across sales, delivery, repairs, support, and bulk packages.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our Core <span class="gold">Services</span></h2>
+      <p class="section-desc">We go beyond selling laptops — we provide complete technology solutions built around your needs and budget.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-laptop"></i></div>
+        <div class="sc-title">Computer Sales</div>
+        <div class="sc-desc">Brand new and certified refurbished laptops and desktops. HP, Dell, Lenovo, Toshiba — carefully sourced and thoroughly checked.</div>
+        <span class="sc-badge">Most Popular</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-building"></i></div>
+        <div class="sc-title">Business Packages</div>
+        <div class="sc-desc">Bulk supply for businesses and institutions. Custom-configured machines with software, warranties, and after-sales support included.</div>
+        <span class="sc-badge">Bulk Discounts</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="sc-title">Student Solutions</div>
+        <div class="sc-desc">Specially curated devices that match student budgets and academic requirements. Flexible payment plans available for schools.</div>
+        <span class="sc-badge">Flexible Payment</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-truck"></i></div>
+        <div class="sc-title">Nationwide Delivery</div>
+        <div class="sc-desc">Safe and insured delivery of your device anywhere in Uganda. We package every unit with care to ensure it arrives in perfect condition.</div>
+        <span class="sc-badge">All Districts</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-tools"></i></div>
+        <div class="sc-title">Repairs &amp; Maintenance</div>
+        <div class="sc-desc">Comprehensive computer repair services — hardware fixes, software troubleshooting, virus removal, and preventive maintenance.</div>
+        <span class="sc-badge">Quick Turnaround</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="sc-icon"><i class="fas fa-headset"></i></div>
+        <div class="sc-title">After-Sales Support</div>
+        <div class="sc-desc">We don't disappear after the sale. Get ongoing technical support, software help, and guidance from our knowledgeable team.</div>
+        <span class="sc-badge">Always Available</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-inner">
+      <div class="reveal">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title" style="margin-bottom:36px;">The <span class="gold">Mwema</span><br>Advantage</h2>
+        <div class="why-list">
+          <div class="why-item"><div class="why-num">01</div><div class="why-text"><strong>Carefully Sourced Devices</strong><p>We partner with certified suppliers to bring you genuine products with proper documentation and warranty coverage.</p></div></div>
+          <div class="why-item"><div class="why-num">02</div><div class="why-text"><strong>Unbeatable Value</strong><p>Competitive prices tailored to the Ugandan market — whether you're a student, a startup, or an established business.</p></div></div>
+          <div class="why-item"><div class="why-num">03</div><div class="why-text"><strong>Expert Honest Guidance</strong><p>No hard selling. We listen to your needs and recommend the device that truly fits — not the most expensive one.</p></div></div>
+          <div class="why-item"><div class="why-num">04</div><div class="why-text"><strong>Post-Purchase Care</strong><p>Your relationship with us doesn't end at checkout. We're here for setup, training, troubleshooting, and more.</p></div></div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <div class="why-big-stat"><div class="why-big-num">500+</div><div class="why-big-label">Happy Clients Across Uganda</div></div>
+        <div class="why-mini-stats">
+          <div class="mini-stat"><strong>100%</strong><span>Verified Devices</span></div>
+          <div class="mini-stat"><strong>24hr</strong><span>Response Time</span></div>
+          <div class="mini-stat"><strong>5&#9733;</strong><span>Average Rating</span></div>
+          <div class="mini-stat"><strong>UG</strong><span>Nationwide Reach</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="cta-banner">
+  <div class="container">
+    <h2>Ready for a smarter purchase?</h2>
+    <p>Order online or contact our team for a personalized recommendation and fast delivery anywhere in Uganda.</p>
+    <div class="cta-btns">
+      <a href="{{ url_for('pages.products') }}" class="btn-dark"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+      <a href="{{ url_for('pages.contact') }}" class="btn-white-outline"><i class="fas fa-envelope"></i> Send Inquiry</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

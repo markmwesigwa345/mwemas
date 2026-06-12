@@ -1,0 +1,90 @@
+[
+  {
+    "sku": "HP-ELITE840-G6",
+    "brand": "HP",
+    "name": "HP EliteBook 840 G6",
+    "type": "laptop",
+    "condition": "refurb",
+    "specs": ["Core i5", "8GB RAM", "256GB SSD"],
+    "price_ugx": 1400000,
+    "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500&q=80",
+    "stock_qty": 5
+  },
+  {
+    "sku": "DELL-LAT5490",
+    "brand": "Dell",
+    "name": "Dell Latitude 5490",
+    "type": "laptop",
+    "condition": "refurb",
+    "specs": ["Core i7", "16GB RAM", "512GB SSD"],
+    "price_ugx": 1900000,
+    "image_url": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80",
+    "stock_qty": 4
+  },
+  {
+    "sku": "LEN-T470",
+    "brand": "Lenovo",
+    "name": "ThinkPad T470",
+    "type": "laptop",
+    "condition": "refurb",
+    "specs": ["Core i5", "8GB RAM", "500GB HDD"],
+    "price_ugx": 1200000,
+    "image_url": "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=500&q=80",
+    "stock_qty": 6
+  },
+  {
+    "sku": "HP-250-G8",
+    "brand": "HP",
+    "name": "HP 250 G8 Laptop",
+    "type": "laptop",
+    "condition": "new",
+    "specs": ["Core i3", "4GB RAM", "1TB HDD"],
+    "price_ugx": 1800000,
+    "image_url": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500&q=80",
+    "stock_qty": 3
+  },
+  {
+    "sku": "DELL-OPT7050",
+    "brand": "Dell",
+    "name": "Dell OptiPlex 7050",
+    "type": "desktop",
+    "condition": "refurb",
+    "specs": ["Core i5", "8GB RAM", "500GB HDD"],
+    "price_ugx": 850000,
+    "image_url": "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=500&q=80",
+    "stock_qty": 5
+  },
+  {
+    "sku": "LEN-IDEAPAD3",
+    "brand": "Lenovo",
+    "name": "IdeaPad 3 15",
+    "type": "laptop",
+    "condition": "new",
+    "specs": ["Ryzen 5", "8GB RAM", "512GB SSD"],
+    "price_ugx": 2100000,
+    "image_url": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&q=80",
+    "stock_qty": 2
+  },
+  {
+    "sku": "HP-PRODESK400",
+    "brand": "HP",
+    "name": "HP ProDesk 400 G6",
+    "type": "desktop",
+    "condition": "new",
+    "specs": ["Core i5", "8GB RAM", "1TB HDD"],
+    "price_ugx": 1600000,
+    "image_url": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+    "stock_qty": 3
+  },
+  {
+    "sku": "TOSH-SATPRO",
+    "brand": "Toshiba",
+    "name": "Toshiba Satellite Pro",
+    "type": "laptop",
+    "condition": "refurb",
+    "specs": ["Core i5", "4GB RAM", "320GB HDD"],
+    "price_ugx": 700000,
+    "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80",
+    "stock_qty": 4
+  }
+]

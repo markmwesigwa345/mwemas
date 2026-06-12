@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products | Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mwema.css') }}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h2>Mwema Admin</h2>
+      <nav>
+        <a href="{{ url_for('admin.dashboard') }}"><i class="fas fa-list"></i> Orders</a>
+        <a href="{{ url_for('admin.products_page') }}" class="active"><i class="fas fa-laptop"></i> Products</a>
+      </nav>
+      <form method="post" action="{{ url_for('admin.logout') }}"><button type="submit" class="admin-logout">Logout</button></form>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Products</h1>
+        <button class="btn-primary" id="seedBtn">Re-seed from JSON</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>SKU</th><th>Name</th><th>Type</th><th>Price (UGX)</th><th>Stock</th><th>Active</th></tr>
+          </thead>
+          <tbody>
+            {% for p in products %}
+            <tr>
+              <td>{{ p.sku }}</td>
+              <td>{{ p.brand }} {{ p.name }}</td>
+              <td>{{ p.type }} / {{ p.condition }}</td>
+              <td><input type="number" class="admin-inline-input" data-field="price_ugx" data-id="{{ p.id }}" value="{{ p.price_ugx }}"/></td>
+              <td><input type="number" class="admin-inline-input" data-field="stock_qty" data-id="{{ p.id }}" value="{{ p.stock_qty }}"/></td>
+              <td><input type="checkbox" class="admin-inline-check" data-field="is_active" data-id="{{ p.id }}" {% if p.is_active %}checked{% endif %}/></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script>
+    async function patchProduct(id, data) {
+      await fetch(`/admin/products/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+    document.querySelectorAll('.admin-inline-input').forEach(el => {
+      el.addEventListener('change', () => patchProduct(el.dataset.id, { [el.dataset.field]: +el.value }));
+    });
+    document.querySelectorAll('.admin-inline-check').forEach(el => {
+      el.addEventListener('change', () => patchProduct(el.dataset.id, { [el.dataset.field]: el.checked }));
+    });
+    document.getElementById('seedBtn')?.addEventListener('click', async () => {
+      const res = await fetch('/admin/seed', { method: 'POST' });
+      if (res.ok) location.reload();
+    });
+  </script>
+</body>
+</html>

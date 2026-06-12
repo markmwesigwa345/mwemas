@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Checkout | Mwema Solutions{% endblock %}
+{% block content %}
+<section class="section checkout-section" style="padding-top:100px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Checkout</span>
+      <h2 class="section-title">Complete Your <span class="gold">Order</span></h2>
+      <p class="section-desc">Review your cart, enter delivery details, and choose how you'd like to pay.</p>
+    </div>
+
+    <div class="checkout-layout">
+      <div class="checkout-form-box reveal">
+        <h3>Delivery Details</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input type="text" id="coName" required placeholder="Your full name"/></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" id="coPhone" required placeholder="+256 7XX XXX XXX"/></div>
+        </div>
+        <div class="form-group"><label>Email (optional)</label><input type="email" id="coEmail" placeholder="your@email.com"/></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>District *</label>
+            <select id="coDistrict" required>
+              <option value="">— Select district —</option>
+              <option value="Kampala">Kampala</option>
+              <option value="Wakiso">Wakiso</option>
+              <option value="Mukono">Mukono</option>
+              <option value="Entebbe">Entebbe</option>
+              <option value="Mbarara">Mbarara</option>
+              <option value="Gulu">Gulu</option>
+              <option value="Ibanda">Ibanda</option>
+              <option value="Jinja">Jinja</option>
+              <option value="Other">Other (Upcountry)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Delivery Address *</label><textarea id="coAddress" required placeholder="Street, area, landmarks..."></textarea></div>
+        <div class="form-group"><label>Order Notes</label><textarea id="coNotes" placeholder="Any special instructions..."></textarea></div>
+
+        <h3 style="margin-top:28px;">Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="payment" value="cod" checked/>
+            <span><strong>Cash on Delivery</strong><small>Pay when your device arrives</small></span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="mobile_money"/>
+            <span><strong>Mobile Money</strong><small>MTN or Airtel — pay before dispatch</small></span>
+          </label>
+        </div>
+
+        <button class="form-submit" id="placeOrderBtn" style="margin-top:24px;">
+          <i class="fas fa-check-circle"></i> Place Order
+        </button>
+        <div class="form-msg form-msg-error" id="checkoutError"></div>
+      </div>
+
+      <div class="checkout-summary reveal">
+        <h3>Order Summary</h3>
+        <div id="checkoutCartItems" class="checkout-cart-items"></div>
+        <div class="checkout-totals">
+          <div class="checkout-total-row"><span>Subtotal</span><span id="checkoutSubtotal">UGX 0</span></div>
+          <div class="checkout-total-row"><span>Delivery</span><span id="checkoutDelivery">UGX 15,000</span></div>
+          <div class="checkout-total-row checkout-total-final"><span>Total</span><span id="checkoutTotal">UGX 0</span></div>
+        </div>
+        <p class="checkout-note"><i class="fas fa-info-circle"></i> Delivery fee updates based on your district selection.</p>
+        <a href="{{ url_for('pages.products') }}" class="btn-outline" style="width:100%;justify-content:center;margin-top:16px;">
+          <i class="fas fa-arrow-left"></i> Continue Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/checkout.js') }}" defer></script>
+{% endblock %}

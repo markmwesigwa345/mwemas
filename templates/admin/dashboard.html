@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Mwema Solutions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mwema.css') }}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <h2>Mwema Admin</h2>
+      <nav>
+        <a href="{{ url_for('admin.dashboard') }}" class="active"><i class="fas fa-list"></i> Orders</a>
+        <a href="{{ url_for('admin.products_page') }}"><i class="fas fa-laptop"></i> Products</a>
+        <a href="{{ url_for('pages.index') }}"><i class="fas fa-globe"></i> View Site</a>
+      </nav>
+      <form method="post" action="{{ url_for('admin.logout') }}"><button type="submit" class="admin-logout">Logout</button></form>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Orders</h1>
+        <div class="admin-stats">
+          <span class="admin-stat-pill">Pending payment: <strong>{{ pending_payment }}</strong></span>
+          {% if low_stock %}<span class="admin-stat-pill warn">Low stock: <strong>{{ low_stock|length }}</strong></span>{% endif %}
+        </div>
+      </div>
+
+      <div class="admin-filters">
+        <a href="{{ url_for('admin.dashboard') }}" class="filter-tab {% if not status_filter %}active{% endif %}">All</a>
+        {% for s in statuses %}
+        <a href="{{ url_for('admin.dashboard', status=s) }}" class="filter-tab {% if status_filter == s %}active{% endif %}">{{ s.replace('_', ' ').title() }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td><strong>{{ order.order_number }}</strong></td>
+              <td>{{ order.customer_name }}</td>
+              <td>{{ order.phone }}</td>
+              <td>UGX {{ "{:,}".format(order.total_ugx) }}</td>
+              <td>{{ order.payment_method }} / {{ order.payment_status }}</td>
+              <td><span class="status-badge status-{{ order.status }}">{{ order.status.replace('_', ' ').title() }}</span></td>
+              <td>{{ order.created_at.strftime('%d %b %Y') if order.created_at else '—' }}</td>
+              <td><a href="{{ url_for('admin.order_detail', order_id=order.id) }}" class="btn-outline admin-btn-sm">View</a></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="8" style="text-align:center;padding:32px;">No orders yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Products | Mwema Solutions{% endblock %}
+{% block meta_description %}Browse laptops, desktops, and refurbished computers. Order online with delivery across Uganda.{% endblock %}
+{% block content %}
+<section class="section" style="padding-top:100px;padding-bottom:20px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Products</span>
+      <h2 class="section-title">Browse Featured Computers</h2>
+      <p class="section-desc">Find the right device for your budget and needs. Add to cart and checkout with COD or mobile money.</p>
+    </div>
+  </div>
+</section>
+
+<section class="product-hero section" style="padding-top:0;padding-bottom:32px;">
+  <div class="container">
+    <div class="product-hero-grid reveal" style="gap:32px;">
+      <div class="product-hero-copy">
+        <span class="section-label">Product Focus</span>
+        <h2 class="section-title">Perfect-fit computers <span class="gold">for every user</span></h2>
+        <p class="section-desc">Curated lineup for students, home offices, and growing businesses across Uganda.</p>
+      </div>
+      <div class="product-hero-card">
+        <div class="product-hero-img"></div>
+        <div class="product-hero-card-copy">
+          <strong>Order online today:</strong>
+          <p>Add to cart, choose payment method, and track your order from confirmation to delivery.</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Expert inspection and warranty-ready devices</li>
+            <li><i class="fas fa-check"></i> COD or mobile money payment</li>
+            <li><i class="fas fa-check"></i> Nationwide delivery with order tracking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section" style="padding-top:0;padding-bottom:48px;">
+  <div class="container">
+    <div class="products-header reveal">
+      <div>
+        <span class="section-label">Our Inventory</span>
+        <h2 class="section-title">Featured <span class="gold">Computers</span></h2>
+      </div>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="laptop">Laptops</button>
+        <button class="filter-tab" data-filter="desktop">Desktops</button>
+        <button class="filter-tab" data-filter="refurb">Refurbished</button>
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="{{ url_for('pages.contact') }}" class="btn-outline"><i class="fas fa-phone-alt"></i> Need a Custom Quote?</a>
+    </div>
+  </div>
+</section>
+
+<div id="cta-banner">
+  <div class="container">
+    <h2>Ready to order?</h2>
+    <p>Add items to your cart and checkout with delivery anywhere in Uganda.</p>
+    <div class="cta-btns">
+      <a href="{{ url_for('pages.checkout') }}" class="btn-dark"><i class="fas fa-shopping-cart"></i> Go to Checkout</a>
+      <a href="{{ url_for('pages.track') }}" class="btn-white-outline"><i class="fas fa-truck"></i> Track Order</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/products-page.js') }}" defer></script>
+{% endblock %}
